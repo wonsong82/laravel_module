@@ -1,0 +1,57 @@
+.loader {
+
+  .loader-container {
+    position: absolute;
+    display: none;
+
+    .lds-rolling {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%) scale(1) translate(50%, 50%);
+
+      span, span:after{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid rgba(255, 255, 255, .8);
+        border-top-color: transparent;
+        border-radius: 50%;
+      }
+
+      span {
+        display: block;
+        animation: lds-rolling-keyframe 1s linear infinite;
+        top: 50%;
+        left: 50%;
+
+        &:after {
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+
+
+
+  &.loading {
+    //padding-left: 30px;
+
+    .loader-container {
+      display: block;
+    }
+  }
+}
+
+
+@keyframes lds-rolling-keyframe {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -1,0 +1,83 @@
+General rules:
+ watchout for spaces
+ database name & field : snake_case
+ filename : hyphen-case
+ uri : hyphen-case (!do not use UpperCase)
+ class name: PascalCase
+ all others: camelCase
+
+
+Module :
+ generate 후 app.php 에 service provider 등록
+
+
+
+SerialCode :
+  $dispatchesEvent = [
+    'creating' => SerializedModelCreating::class,
+    'created' => SerializedModelCreated::class
+  ];
+  public $serialCode = 'code';
+
+
+
+
+Constant
+ * field name must be ${var}_code
+ * 200101 = 2:ModuleNumber, 1:Constant, 1:Value
+ * $this->${var} will return object
+
+
+
+
+Language
+ * generals use: module::filename.fieldname
+ * constants: module::constant.constant_key
+ * for crud list page, use constant type (constant.blade.php)
+
+
+
+
+Model
+
+ traits:
+  HasConstants
+  HasOrder
+  HasActivityLogs
+  HasModelChanges
+  HasPhones
+  HasAddresses
+  HasNotifications
+
+ scopeOrder
+
+ scopeSearch
+
+
+
+
+
+CrudControllers
+
+ traits:
+  CrudTrait
+  CustomCrudTrait
+  AddressCrudTrait
+
+
+
+
+
+code generate
+ module:model:generate $name $orderNumber
+ module:model:generate $name:$classType $className
+ $types = [CrudController, CrudRequest, LogicController, Model, Request, Command, Constant, Event]
+
+
+
+
+
+popup
+multi list
+list
+

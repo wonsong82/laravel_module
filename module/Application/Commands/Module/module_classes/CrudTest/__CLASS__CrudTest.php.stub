@@ -1,0 +1,100 @@
+<?php
+namespace Module\__NAME__\Tests\Feature;
+
+use Module\__NAME__\__CLASS__;
+use Module\Application\Tests\FeatureTestCase;
+
+class __CLASS__CrudTest extends FeatureTestCase
+{
+    public $__CAMEL_CLASS__;
+
+    public function test__CLASS__Crud()
+    {
+        $this->list__CLASS__();
+        $this->create__CLASS__();
+        //$this->read__CLASS__();
+        $this->update__CLASS__();
+        $this->delete__CLASS__();
+    }
+
+
+    public function list__CLASS__()
+    {
+        // index page
+        $res = $this->get(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.index'));
+        $res->assertOk();
+
+        // search ajax
+        $res = $this->post(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.search'), [
+            'search' => ['value' => 'search']
+        ]);
+        $res->assertOk();
+        //$this->assertTrue(!!strstr($res->json()['data'][0][1], 'search'));
+
+        // sort
+
+        // filter
+    }
+
+
+    public function create__CLASS__()
+    {
+        // create page
+        $res = $this->get(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.create'));
+        $res->assertOk();
+
+        // store
+        $res = $this->post(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.store'), [
+            'name' => 'string'
+        ]);
+        $res->assertSessionHasNoErrors();
+        $res->assertOk(); // for popup
+        // $res->assertRedirect(); // for non popup
+
+        // exist
+        $__CAMEL_CLASS__ = __CLASS__::where('name', 'string')->first();
+        $this->assertNotNull($__CAMEL_CLASS__);
+        $this->__CAMEL_CLASS__ = $__CAMEL_CLASS__;
+    }
+
+
+    public function read__CLASS__()
+    {
+        // show page
+        $res = $this->get(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.show', ['__LOWER_CLASS__' => $this->__CAMEL_CLASS__->id]));
+        $res->assertOk();
+    }
+
+
+    public function update__CLASS__()
+    {
+        // edit page
+        $res = $this->get(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.edit', ['__LOWER_CLASS__' => $this->__CAMEL_CLASS__->id]));
+        $res->assertOk();
+
+        // update
+        $res = $this->put(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.update', ['__LOWER_CLASS__' => $this->__CAMEL_CLASS__->id]), [
+            'name' => 'string2'
+        ]);
+        $res->assertSessionHasNoErrors();
+        $res->assertOk(); // for popup
+        // $res->assertRedirect(); // for non popup
+
+        // update check
+        $__CAMEL_CLASS__ = __CLASS__::find($this->__CAMEL_CLASS__->id);
+        $this->assertTrue($__CAMEL_CLASS__->name == 'string2');
+    }
+
+
+    public function delete__CLASS__()
+    {
+        // delete
+        $res = $this->delete(route('__LOWER_NAME__::crud.__HYPHEN_CLASS__.destroy', ['__LOWER_CLASS__' => $this->__CAMEL_CLASS__->id]));
+        $res->assertOk();
+        $res->assertSessionHasNoErrors();
+
+        // delete check
+        $__CAMEL_CLASS__ = __CLASS__::find($this->__CAMEL_CLASS__->id);
+        $this->assertNull($__CAMEL_CLASS__);
+    }
+}

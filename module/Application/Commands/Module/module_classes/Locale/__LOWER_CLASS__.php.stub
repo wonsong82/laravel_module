@@ -1,0 +1,31 @@
+<?php
+return [
+    'name' => '__READABLE_CLASS__',
+    'name_plural' => '__READABLE_CLASS__s',
+    'field' => [
+
+    ],
+    'tab' => [
+        'main' => 'General',
+    ],
+    'log' => [
+        'created' => [
+            'title' => '__READABLE_CLASS__ added',
+            'text' => '__READABLE_CLASS__ ":name" added.'
+        ],
+        'deleted' => [
+            'title' => '__READABLE_CLASS__ deleted',
+            'text' => '__READABLE_CLASS__ ":name" deleted.'
+        ],
+        'updated' => [
+            'title' => '__READABLE_CLASS__ changed',
+            'text' => '__READABLE_CLASS__ ":name" changed.',
+            'detail' => ':field: ":from" => ":to"',
+//            'has_many' => [
+//                'created' => 'relation ":name" added.',
+//                'deleted' => 'relation ":name" removed.',
+//                'updated' => 'relation ":name" changed. :field: ":from" => ":to"'
+//            ]
+        ]
+    ]
+];

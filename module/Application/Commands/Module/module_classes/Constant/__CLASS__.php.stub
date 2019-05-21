@@ -1,0 +1,15 @@
+<?php
+namespace Module\__NAME__\Constants;
+
+class __CLASS__ {
+    const ACTIVE    = __CONSTANT_ORDER__01;
+    const INACTIVE  = __CONSTANT_ORDER__02;
+
+    public $types = [
+        self::ACTIVE => 'info',
+        self::INACTIVE => 'default'
+    ];
+
+    public $exclude = false; // set this true to skip adding this constant to the db
+}
+

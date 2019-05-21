@@ -1,0 +1,70 @@
+<?php
+
+namespace  Module\__NAME__\EventListeners;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Module\Application\Constants\ActivityLogType;
+
+class __CLASS__EventListener
+{
+    public function __construct()
+    {
+
+    }
+
+
+    public function handle($event)
+    {
+        $method = 'handle' . class_basename($event);
+        if(method_exists($this, $method)){
+            $this->$method($event);
+        }
+    }
+
+
+    public function handle__CLASS__Created($event)
+    {
+        $event->model->logActivity(
+            ActivityLogType::INFO,
+            __('__LOWER_NAME__::__LOWER_CLASS__.log.created.title'),
+            __('__LOWER_NAME__::__LOWER_CLASS__.log.created.text', ['name' => $event->model->name])
+        );
+    }
+
+
+    public function handle__CLASS__Deleted($event)
+    {
+        $event->model->logActivity(
+            ActivityLogType::DANGER,
+            __('__LOWER_NAME__::__LOWER_CLASS__.log.deleted.title'),
+            __('__LOWER_NAME__::__LOWER_CLASS__.log.deleted.text', ['name' => $event->model->name])
+        );
+    }
+
+
+
+    public function handle__CLASS__Updated($event)
+    {
+        $__CAMEL_CLASS__Changes = collect($event->changes['__LOWER_CLASS__']->changes)->map(function($change){
+            return __('__LOWER_NAME__::__LOWER_CLASS__.log.updated.detail', [
+                'field' => __("__LOWER_NAME__::__LOWER_CLASS__.field.{$change->name}"),
+                'from' => $change->from,
+                'to' => $change->to
+            ]);
+        });
+
+        $changes = collect([])
+            ->merge($__CAMEL_CLASS__Changes)
+            ->toArray();
+
+        if(count($changes)){
+            $event->model->logActivity(
+                ActivityLogType::SUCCESS,
+                __('__LOWER_NAME__::__LOWER_CLASS__.log.updated.title'),
+                __('__LOWER_NAME__::__LOWER_CLASS__.log.updated.text', ['name' => $event->model->name]),
+                implode('<br>', $changes)
+            );
+        }
+    }
+}

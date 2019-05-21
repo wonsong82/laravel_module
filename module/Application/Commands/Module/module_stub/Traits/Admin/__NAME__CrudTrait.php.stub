@@ -1,0 +1,15 @@
+<?php
+namespace Module\__NAME__\Traits\Admin;
+
+trait __NAME__CrudTrait
+{
+    public function btnCustom($entry)
+    {
+        //$route = route('crud.purchase-order.order'); // to
+        $route = '';
+
+
+        return '<a class="btn btn-xs btn-primary" target="_blank" href="'.$route.'">Button</a>';
+    }
+
+}

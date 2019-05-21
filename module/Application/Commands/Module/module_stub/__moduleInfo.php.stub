@@ -1,0 +1,5 @@
+<?php
+return [
+    'moduleName' => '__NAME__',
+    'moduleOrder' => __ORDER__
+];

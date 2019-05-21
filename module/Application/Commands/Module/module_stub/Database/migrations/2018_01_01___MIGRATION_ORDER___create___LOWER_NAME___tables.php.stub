@@ -1,0 +1,31 @@
+<?php
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+
+class Create__NAME__Tables extends Migration
+{
+    public function up()
+    {
+        /*
+        delete this
+        Schema::create('', function(Blueprint $table){
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->string('code')->index();
+            $table->unique(['company_id', 'code']);
+            $table->string('name')->index();
+            $table->timestamps();
+        });
+        */
+
+    }
+
+
+    public function down()
+    {
+        Schema::dropIfExists('');
+    }
+}

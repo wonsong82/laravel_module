@@ -1,0 +1,76 @@
+<?php
+namespace Module\__NAME__\Controllers\Logic;
+
+
+use Module\Application\Controllers\Logic\LogicController;
+use Module\Application\ModelChangeCollection;
+use Module\__NAME__\__CLASS__;
+use Module\__NAME__\Events\__CLASS__Created;
+use Module\__NAME__\Events\__CLASS__Deleted;
+use Module\__NAME__\Events\__CLASS__Updated;
+
+
+class __CLASS__Controller extends LogicController
+{   
+    /**
+     * @param $params []
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function create($params)
+    {
+        // create 
+        $__CAMEL_CLASS__ = __CLASS__::create($params);
+
+
+        // events
+        event(new __CLASS__Created($__CAMEL_CLASS__));
+
+
+        return $__CAMEL_CLASS__;
+    }
+
+
+    /**
+     * @param __CLASS__ $__CAMEL_CLASS__
+     * @param $params []
+     * @return mixed
+     */
+    public function update(__CLASS__ $__CAMEL_CLASS__, $params)
+    {
+        // changes
+        $changes = app(ModelChangeCollection::class);
+        $changes['__LOWER_CLASS__'] = $__CAMEL_CLASS__->getModelChanges($params);
+        $changes->checkChanges();
+
+
+        // update
+        $changes->save();
+
+
+        // events
+        event(new __CLASS__Updated($__CAMEL_CLASS__, $changes));
+
+
+        return $changes['__LOWER_CLASS__']->model;
+    }
+
+
+    /**
+     * @param __CLASS__ $__CAMEL_CLASS__
+     * @return __CLASS__
+     */
+    public function delete(__CLASS__ $__CAMEL_CLASS__)
+    {
+        // delete
+        $__CAMEL_CLASS__->delete();
+
+
+        // events
+        event(new __CLASS__Deleted($__CAMEL_CLASS__));
+
+
+        return $__CAMEL_CLASS__;
+    }
+
+    
+}

@@ -1,0 +1,118 @@
+.MiniMonthCalendar {
+  display: block;
+  position: relative;
+  padding: 0 20px 15px;
+
+  &Header {
+    height: 32px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #757575;
+    display: flex;
+    align-items: center;
+
+    .month-text {
+      box-flex: 1;
+      flex-grow: 1;
+      padding-left: 5px;
+    }
+
+    .button {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      cursor: pointer;
+      border: 0;
+      border-radius: 50%;
+      flex-shrink: 0;
+      outline: none;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.2s ease;
+
+      .icon {
+        vertical-align: middle;
+      }
+
+      &:hover {
+        background-color: rgba(0,0,0,.07);
+      }
+    }
+  }
+
+  &Grid {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+
+    .day-names {
+      display: table-row;
+      height: 24px;
+
+      .day-name {
+        display: table-cell;
+        font-size: 10px;
+        font-weight: 500;
+        vertical-align: middle;
+        color: #757575;
+      }
+    }
+
+    .days {
+      display: table-row-group;
+
+      &-row {
+        display: table-row;
+        height: 24px;
+
+        .day {
+          display: table-cell;
+          font-size: 10px;
+          font-weight: 500;
+          vertical-align: middle;
+          color: #212121;
+          cursor: pointer;
+          outline: none;
+          position: relative;
+
+          .day-text {
+            display: block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            border-radius: 50%;
+            position: relative;
+            transition: background-color 0.2s ease;
+          }
+
+          &:hover .day-text {
+            background-color: #e0e0e0;
+          }
+
+          &.selected .day-text {
+            background-color: #e0e0e0;
+          }
+
+          &.today .day-text {
+            background-color: #4285f4;
+            color: #fff;
+          }
+
+          // out of range
+          &.oor {
+            color: #757575;
+
+            &:hover .day-text {
+              background-color: #f5f5f5;
+            }
+          }
+
+        }
+
+      }
+    }
+  }
+}
